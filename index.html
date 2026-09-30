@@ -37,6 +37,15 @@ form button{margin-top:14px}
 .qr-box{text-align:center;margin:15px 0;padding:14px;background:#0b0b0b;border-radius:12px;border:1px solid #282828}
 .qr-placeholder{width:210px;height:210px;margin:auto;background:#fff;color:#111;display:flex;align-items:center;justify-content:center;font-weight:900;letter-spacing:3px}
 @media(max-width:600px){.wallet-actions{grid-template-columns:1fr}}
+
+/* Deposit QR popup */
+.qr-modal{position:fixed;inset:0;background:rgba(0,0,0,.78);display:none;align-items:center;justify-content:center;padding:18px;z-index:9999}
+.qr-modal.show{display:flex}
+.qr-modal-box{width:min(420px,100%);max-height:90vh;overflow:auto;background:#111;border:1px solid #333;border-radius:20px;padding:22px;box-shadow:0 20px 60px rgba(0,0,0,.55);text-align:center;position:relative}
+.qr-modal-close{position:absolute;right:12px;top:10px;width:38px;height:38px;border:0;border-radius:50%;background:#262626;color:#fff;font-size:24px;cursor:pointer}
+.qr-modal .qr-box{background:#fff;border:0;padding:12px;margin:18px auto;width:max-content;max-width:100%}
+.qr-modal .qr-box img{display:block;width:min(280px,70vw);height:auto;max-width:100%}
+.qr-modal-note{color:#aaa;font-size:13px;line-height:1.5;margin:8px 0 16px}
 </style>
 </head>
 <body>
@@ -216,14 +225,22 @@ function addCreditHistory(type,amount){
   saveWallet(); renderCredit();
 }
 function openDeposit(){
-  const p=document.getElementById('walletPanel');
-  p.style.display='block';
-  p.innerHTML=`
-    <h3>💰 เติมเงิน</h3>
-    <p style="color:#888">กรุณาตรวจสอบช่องทางชำระเงินก่อนทำรายการ</p>
-    ${qrHtmlSafe()}
-    <input id="depositAmount" type="number" min="1" placeholder="จำนวนเครดิต">
-    <button class="join" onclick="submitDeposit()">ยืนยันเติมเครดิต</button>`;
+  const modal=document.getElementById('qrDepositModal');
+  const content=document.getElementById('qrModalContent');
+  content.innerHTML=qrHtmlSafe();
+  modal.classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeDepositQR(){
+  const modal=document.getElementById('qrDepositModal');
+  modal.classList.remove('show');
+  document.body.style.overflow='';
+}
+function submitDepositFromQR(){
+  const amount=Number(document.getElementById('depositAmountModal').value||0);
+  if(!amount || amount<=0){ alert('กรุณากรอกจำนวนเงินก่อน'); return; }
+  closeDepositQR();
+  alert('ส่งคำขอแจ้งชำระเงินแล้ว กรุณารอตรวจสอบ');
 }
 function qrHtmlSafe(){
   return `<div class="qr-box">
@@ -269,5 +286,16 @@ function logout(){
 updateHome();
 </script>
 
+
+<div id="qrDepositModal" class="qr-modal" onclick="if(event.target===this) closeDepositQR()">
+  <div class="qr-modal-box">
+    <button class="qr-modal-close" onclick="closeDepositQR()" aria-label="ปิด">×</button>
+    <h2 style="margin:0 35px 8px">💰 เติมเงิน</h2>
+    <p class="qr-modal-note">สแกน QR Code เพื่อชำระเงิน แล้วกดปุ่มแจ้งชำระเงินหลังจากโอนเรียบร้อย</p>
+    <div id="qrModalContent"></div>
+    <input id="depositAmountModal" type="number" min="1" placeholder="จำนวนเงิน/เครดิต" style="width:100%;box-sizing:border-box;margin-top:10px">
+    <button class="join" style="width:100%;margin-top:12px" onclick="submitDepositFromQR()">แจ้งชำระเงินแล้ว</button>
+  </div>
+</div>
 </body>
 </html>
