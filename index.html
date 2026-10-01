@@ -712,10 +712,41 @@ input:focus{
   text-shadow:0 0 15px #ff1744;
 }
 </style>
+.quick-menu{
+position:fixed;
+top:15px;
+left:12px;
+right:12px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:8px;
+z-index:9999;
+}
+
+.quick-menu button,
+.quick-menu a{
+padding:12px 4px;
+border:1px solid #a52cff;
+border-radius:12px;
+background:#160b24;
+color:white;
+text-align:center;
+text-decoration:none;
+font-size:12px;
+font-weight:700;
+}
 </head>
 
 <body>
+<div class="quick-menu">
+<button onclick="alert('ฟังก์ชั่นนี้เฉพาะสมาชิกพิเศษ คุณไม่ใช่สมาชิกพิเศษ')">คืนยอดเสีย</button>
 
+<a href="https://lin.ee/wqXR8SH" target="_blank">แนะนำเพื่อน</a>
+
+<button onclick="alert('ฟังก์ชั่นนี้เฉพาะสมาชิกพิเศษ คุณไม่ใช่สมาชิกพิเศษ')">VIP</button>
+
+<a href="https://lin.ee/wqXR8SH" target="_blank">ติดต่อ</a>
+</div>
 <section id="homePage" class="page">
 <main class="card">
 
@@ -1319,60 +1350,7 @@ function startPaymentTimer(){
     }
   },1000);
 }
-</script>
 
-</<style>
-.quick-menu{
-  position:fixed;
-  top:15px;
-  left:12px;
-  right:12px;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:8px;
-  z-index:9999;
-}
-
-.quick-menu button,
-.quick-menu a{
-  padding:12px 4px;
-  border:1px solid #a52cff;
-  border-radius:12px;
-  background:#160b24;
-  color:white;
-  text-align:center;
-  text-decoration:none;
-  font-size:12px;
-  font-weight:700;
-  box-shadow:0 0 15px #8b20ff;
-}
-
-.quick-menu button:active,
-.quick-menu a:active{
-  transform:scale(.95);
-}
-</style>
-
-<div class="quick-menu">
-
-  <button onclick="specialAlert()">คืนยอดเสีย</button>
-
-  <a href="https://lin.ee/wqXR8SH" target="_blank">
-    แนะนำเพื่อน
-  </a>
-
-  <button onclick="specialAlert()">VIP</button>
-
-  <a href="https://lin.ee/wqXR8SH" target="_blank">
-    ติดต่อ
-  </a>
-
-</div>
-
-<script>
-function specialAlert(){
-  alert("ฟังก์ชั่นนี้เฉพาะสมาชิกพิเศษ คุณไม่ใช่สมาชิกพิเศษ");
-}
 </script>
 </body>
 </html>
