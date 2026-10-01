@@ -734,6 +734,37 @@ text-decoration:none;
 font-size:12px;
 font-weight:700;
 }
+/* รูปแบบปุ่ม เติมเงิน / ถอนเงิน */
+.wallet{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+  margin-top:18px;
+}
+
+.wallet .register,
+.wallet .login{
+  width:100%;
+  min-height:72px;
+  border-radius:18px;
+  font-size:20px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.wallet .register{
+  background:linear-gradient(135deg,#b629ff,#5b16d8);
+  color:#fff;
+  border:1px solid #b629ff;
+  box-shadow:0 0 22px rgba(174,38,255,.45);
+}
+
+.wallet .login{
+  background:#160b24;
+  color:#fff;
+  border:1px solid #a52cff;
+  box-shadow:0 0 12px rgba(165,44,255,.18);
+}
 </style>
 
 </head>
