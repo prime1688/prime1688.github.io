@@ -8,1019 +8,992 @@
 <style>
 *{box-sizing:border-box}
 
-body{
+html,body{
 margin:0;
-background:#070708;
-color:#f3f3f3;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+padding:0;
+min-height:100%;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:#fff;
+background:#08020f;
+}
+
+body{
+background:
+radial-gradient(circle at 50% 18%,rgba(163,43,255,.32),transparent 32%),
+radial-gradient(circle at 10% 55%,rgba(72,0,180,.24),transparent 30%),
+radial-gradient(circle at 90% 70%,rgba(195,0,255,.18),transparent 28%),
+linear-gradient(145deg,#05010a,#170027 52%,#05010a);
+}
+
+button,input{
+font:inherit;
+}
+
+button{
+cursor:pointer;
 }
 
 .page{
 min-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:25px 15px
+padding:18px 14px 35px;
 }
 
-.card{
-width:min(760px,100%);
-text-align:center
+.container{
+width:min(900px,100%);
+margin:auto;
 }
 
-.logo{
-font-size:64px;
-font-weight:900;
-letter-spacing:6px
-}
-
-.subtitle{
-color:#999;
-letter-spacing:5px;
-margin:4px 0 36px
-}
-
-.box{
-background:#111;
-border:1px solid #292929;
-border-radius:18px;
-padding:25px 20px;
-margin-bottom:18px
-}
-
-h2,h3{
-margin-top:0
-}
-
-p{
-color:#999
-}
-
-.main-buttons{
-display:flex;
-flex-direction:column;
-gap:10px;
-margin-top:18px
-}
-
-.btn{
-width:100%;
-border:0;
-border-radius:12px;
-padding:15px;
-font-size:16px;
-font-weight:700;
-cursor:pointer
-}
-
-.register{
-background:#fff;
-color:#000
-}
-
-.login{
-background:#222;
-color:#fff;
-border:1px solid #444
-}
-
-.game{
-background:#151515;
-color:#fff;
-border:1px solid #555
-}
-
-.form-page{
-display:none
-}
-
-input{
-width:100%;
-padding:15px;
-margin:7px 0;
-border-radius:10px;
-border:1px solid #333;
-background:#080808;
-color:#fff;
-font-size:16px
-}
-
-.member{
-display:none
-}
-
-.credit{
-font-size:38px;
-font-weight:800;
-margin:12px 0 20px
-}
-
-.wallet{
+/* เมนูด้านบน */
+.topbar{
 display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-margin-top:15px
+grid-template-columns:repeat(4,1fr);
+gap:9px;
+margin-bottom:18px;
 }
 
-.modal{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.82);
-align-items:center;
-justify-content:center;
-padding:20px;
-z-index:9999
+.topbar button{
+min-height:54px;
+border:1px solid #a52cff;
+border-radius:15px;
+background:rgba(19,5,31,.8);
+color:#fff;
+font-weight:800;
+box-shadow:0 0 16px rgba(160,35,255,.18);
 }
 
-.modal.show{
-display:flex
+.topbar button:hover{
+box-shadow:0 0 24px rgba(183,48,255,.55);
+transform:translateY(-1px);
 }
 
-.modal-box{
-width:min(390px,100%);
-background:#151515;
-border:1px solid #333;
-border-radius:20px;
-padding:25px;
+/* โลโก้ */
+.hero{
 text-align:center;
-box-shadow:0 20px 60px rgba(0,0,0,.6)
+padding:12px 0 22px;
 }
 
-.qr-wrap{
-background:#fff;
-width:250px;
-height:250px;
-margin:18px auto;
-padding:15px;
-border-radius:14px;
-display:flex;
-align-items:center;
-justify-content:center
-}
-
-.qr-wrap img{
-width:100%;
-height:100%;
-image-rendering:pixelated;
-object-fit:contain
-}
-
-.small{
-font-size:12px;
-color:#777
-}
-</<style>
-*{
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  margin:0;
-  min-height:100vh;
-  color:#fff;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:
-    radial-gradient(circle at 20% 20%,rgba(157,55,255,.22),transparent 28%),
-    radial-gradient(circle at 80% 30%,rgba(91,0,255,.18),transparent 30%),
-    radial-gradient(circle at 50% 100%,rgba(184,0,255,.15),transparent 35%),
-    #050307;
-  overflow-x:hidden;
-}
-
-/* แสงเคลื่อนที่บนพื้นหลัง */
-body:before{
-  content:"";
-  position:fixed;
-  inset:-50%;
-  pointer-events:none;
-  background:
-    conic-gradient(
-      from 0deg,
-      transparent,
-      rgba(170,70,255,.12),
-      transparent,
-      rgba(93,0,255,.10),
-      transparent
-    );
-  animation:rotateGlow 14s linear infinite;
-  z-index:-2;
-}
-
-/* จุดแสง */
-body:after{
-  content:"";
-  position:fixed;
-  width:420px;
-  height:420px;
-  left:50%;
-  top:45%;
-  transform:translate(-50%,-50%);
-  background:radial-gradient(
-    circle,
-    rgba(168,60,255,.16),
-    transparent 70%
-  );
-  filter:blur(20px);
-  animation:pulseLight 3s ease-in-out infinite;
-  pointer-events:none;
-  z-index:-1;
-}
-
-@keyframes rotateGlow{
-  to{
-    transform:rotate(360deg);
-  }
-}
-
-@keyframes pulseLight{
-  0%,100%{
-    opacity:.45;
-    transform:translate(-50%,-50%) scale(.8);
-  }
-  50%{
-    opacity:1;
-    transform:translate(-50%,-50%) scale(1.25);
-  }
-}
-
-.page{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:30px 15px;
-  animation:pageIn .8s ease;
-}
-
-@keyframes pageIn{
-  from{
-    opacity:0;
-    transform:scale(.97);
-  }
-  to{
-    opacity:1;
-    transform:scale(1);
-  }
-}
-
-.card{
-  width:min(760px,100%);
-  text-align:center;
-  position:relative;
-}
-
-/* โลโก้ PRIME */
 .logo{
-  font-size:64px;
-  font-weight:1000;
-  letter-spacing:8px;
-  color:#fff;
-  text-shadow:
-    0 0 5px #fff,
-    0 0 15px #a63cff,
-    0 0 35px #8b20ff,
-    0 0 70px #6900ff;
-  animation:
-    logoGlow 2s ease-in-out infinite alternate,
-    logoFloat 4s ease-in-out infinite;
-}
-
-@keyframes logoGlow{
-  from{
-    text-shadow:
-      0 0 5px #fff,
-      0 0 15px #a63cff,
-      0 0 30px #8b20ff;
-  }
-  to{
-    text-shadow:
-      0 0 8px #fff,
-      0 0 25px #c66cff,
-      0 0 55px #9b20ff,
-      0 0 90px #6500ff;
-  }
-}
-
-@keyframes logoFloat{
-  0%,100%{
-    transform:translateY(0);
-  }
-  50%{
-    transform:translateY(-7px);
-  }
+font-size:clamp(54px,13vw,96px);
+font-weight:1000;
+letter-spacing:8px;
+line-height:1;
+text-shadow:
+0 0 8px #fff,
+0 0 28px #b52cff,
+0 0 58px #7614ff;
 }
 
 .subtitle{
-  color:#c89cff;
-  letter-spacing:7px;
-  margin:4px 0 36px;
-  text-shadow:0 0 15px #9d36ff;
-  animation:subtitleGlow 2s ease-in-out infinite alternate;
+font-size:clamp(18px,4vw,28px);
+letter-spacing:9px;
+color:#c58cff;
+margin-top:13px;
 }
 
-@keyframes subtitleGlow{
-  from{
-    opacity:.55;
-  }
-  to{
-    opacity:1;
-  }
+/* แถบประกาศ */
+.notice{
+margin:0 auto 18px;
+max-width:860px;
+border:1px solid #9f31ff;
+border-radius:16px;
+padding:13px 18px;
+background:linear-gradient(
+90deg,
+rgba(85,13,125,.8),
+rgba(28,5,54,.8)
+);
+text-align:center;
+box-shadow:0 0 22px rgba(167,45,255,.2);
 }
 
-/* กล่อง */
-.box{
-  position:relative;
-  overflow:hidden;
-  background:
-    linear-gradient(
-      145deg,
-      rgba(35,15,50,.92),
-      rgba(10,7,14,.96)
-    );
-  border:1px solid rgba(171,77,255,.35);
-  border-radius:22px;
-  padding:25px 20px;
-  margin-bottom:18px;
-  box-shadow:
-    0 0 20px rgba(133,0,255,.12),
-    inset 0 0 30px rgba(137,0,255,.04);
-  transition:
-    transform .35s ease,
-    box-shadow .35s ease,
-    border-color .35s ease;
-  animation:boxFloat 5s ease-in-out infinite;
+/* กล่องหลัก */
+.card{
+background:
+linear-gradient(
+145deg,
+rgba(28,8,42,.92),
+rgba(10,3,18,.96)
+);
+border:1px solid #9b2aff;
+border-radius:25px;
+padding:24px;
+box-shadow:
+0 0 28px rgba(153,40,255,.2),
+inset 0 0 35px rgba(105,0,160,.08);
 }
 
-.box:nth-child(2){
-  animation-delay:.7s;
+/* สมาชิก */
+.member-head{
+display:flex;
+align-items:center;
+gap:18px;
+padding-bottom:18px;
 }
 
-.box:nth-child(3){
-  animation-delay:1.4s;
+.avatar{
+width:72px;
+height:72px;
+border-radius:50%;
+display:grid;
+place-items:center;
+font-size:36px;
+border:1px solid #b235ff;
+background:#160822;
+box-shadow:0 0 25px rgba(178,53,255,.35);
 }
 
-.box:hover{
-  transform:
-    translateY(-8px)
-    scale(1.015);
-  border-color:#b64cff;
-  box-shadow:
-    0 0 15px #9b25ff,
-    0 0 40px rgba(155,37,255,.35),
-    inset 0 0 30px rgba(155,37,255,.1);
+.member-head small{
+color:#a98ab9;
 }
 
-@keyframes boxFloat{
-  0%,100%{
-    transform:translateY(0);
-  }
-  50%{
-    transform:translateY(-3px);
-  }
+.member-head h2{
+margin:3px 0;
+font-size:24px;
 }
 
-/* เส้นแสงวิ่งบนกล่อง */
-.box:before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:-120%;
-  width:70%;
-  height:2px;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    #d58aff,
-    #8b20ff,
-    transparent
-  );
-  box-shadow:0 0 15px #a62cff;
-  animation:scanLine 4s linear infinite;
-}
-
-@keyframes scanLine{
-  0%{
-    left:-120%;
-  }
-  100%{
-    left:150%;
-  }
-}
-
-h2{
-  text-shadow:0 0 15px rgba(183,75,255,.5);
-}
-
-h3{
-  color:#d7b1ff;
-}
-
-p{
-  color:#aaa;
-}
-
-/* ปุ่ม */
-.main-buttons{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-  margin-top:18px;
-}
-
-.btn{
-  position:relative;
-  overflow:hidden;
-  width:100%;
-  border:0;
-  border-radius:14px;
-  padding:16px;
-  font-size:16px;
-  font-weight:800;
-  cursor:pointer;
-  transition:
-    transform .2s ease,
-    box-shadow .2s ease;
-}
-
-.btn:before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:-100%;
-  width:60%;
-  height:100%;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,255,255,.4),
-    transparent
-  );
-  transform:skewX(-20deg);
-  animation:buttonShine 3s infinite;
-}
-
-@keyframes buttonShine{
-  0%{
-    left:-100%;
-  }
-  45%,100%{
-    left:150%;
-  }
-}
-
-.btn:hover{
-  transform:translateY(-3px) scale(1.02);
-}
-
-.register{
-  color:#fff;
-  background:
-    linear-gradient(
-      135deg,
-      #b72cff,
-      #7b16e8,
-      #4e00a8
-    );
-  box-shadow:
-    0 0 12px rgba(174,50,255,.6),
-    0 0 30px rgba(117,0,255,.3);
-  animation:buttonPulse 2.2s infinite;
-}
-
-.login{
-  color:#fff;
-  background:
-    linear-gradient(
-      135deg,
-      #21112e,
-      #120b18
-    );
-  border:1px solid #7130a5;
-  box-shadow:0 0 15px rgba(125,40,190,.2);
-}
-
-.game{
-  color:#fff;
-  background:
-    linear-gradient(
-      135deg,
-      #37105b,
-      #160820
-    );
-  border:1px solid #9a36e8;
-  box-shadow:
-    0 0 15px rgba(157,48,255,.4),
-    inset 0 0 15px rgba(157,48,255,.08);
-  animation:gameGlow 2s ease-in-out infinite alternate;
-}
-
-@keyframes buttonPulse{
-  0%,100%{
-    box-shadow:
-      0 0 10px rgba(174,50,255,.45),
-      0 0 25px rgba(117,0,255,.2);
-  }
-  50%{
-    box-shadow:
-      0 0 20px rgba(205,90,255,.8),
-      0 0 45px rgba(117,0,255,.45);
-  }
-}
-
-@keyframes gameGlow{
-  from{
-    box-shadow:
-      0 0 10px rgba(157,48,255,.35);
-  }
-  to{
-    box-shadow:
-      0 0 25px rgba(188,75,255,.75),
-      0 0 50px rgba(112,0,255,.3);
-  }
-}
-
-/* ช่องกรอก */
-input{
-  width:100%;
-  padding:16px;
-  margin:7px 0;
-  border-radius:12px;
-  border:1px solid #45215d;
-  background:#08050b;
-  color:#fff;
-  font-size:16px;
-  outline:none;
-  transition:.3s;
-}
-
-input:focus{
-  border-color:#b548ff;
-  box-shadow:
-    0 0 10px rgba(181,72,255,.5),
-    inset 0 0 10px rgba(181,72,255,.05);
+.badge{
+margin-left:auto;
+padding:10px 15px;
+border-radius:14px;
+border:1px solid #f0b83e;
+color:#ffd66d;
+background:#241500;
 }
 
 /* เครดิต */
+.credit-box{
+text-align:center;
+padding:20px;
+border-radius:20px;
+background:rgba(5,2,12,.65);
+border:1px solid #51206d;
+margin-bottom:16px;
+}
+
+.credit-label{
+color:#b8a2c2;
+font-size:18px;
+}
+
 .credit{
-  font-size:42px;
-  font-weight:900;
-  color:#d6a0ff;
-  text-shadow:
-    0 0 10px #a12cff,
-    0 0 30px #7515c9;
-  animation:creditGlow 1.8s infinite alternate;
+font-size:56px;
+font-weight:1000;
+color:#e5a4ff;
+text-shadow:0 0 20px #a52cff;
+margin-top:6px;
 }
 
-@keyframes creditGlow{
-  from{
-    transform:scale(1);
-  }
-  to{
-    transform:scale(1.05);
-  }
-}
-
+/* เติมเงิน / ถอนเงิน */
 .wallet{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:15px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px;
 }
 
-/* หน้า */
-.form-page{
-  display:none;
+.action{
+min-height:88px;
+border-radius:20px;
+border:1px solid #a52cff;
+color:#fff;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:12px;
+font-size:22px;
+font-weight:900;
+background:#160b24;
+box-shadow:0 0 16px rgba(162,43,255,.14);
 }
 
-/* Popup */
+.action.deposit{
+background:linear-gradient(135deg,#c52cff,#5a0bd6);
+box-shadow:0 0 26px rgba(193,43,255,.45);
+}
+
+.action .icon{
+font-size:32px;
+}
+
+.arrow{
+margin-left:auto;
+margin-right:16px;
+}
+
+/* บริการ */
+.services{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+margin-top:14px;
+}
+
+.service,
+.game,
+.logout{
+border:1px solid #8125c6;
+border-radius:17px;
+background:#12091c;
+color:#fff;
+min-height:68px;
+font-weight:800;
+}
+
+.service span{
+display:block;
+}
+
+.service small{
+color:#9f87ac;
+}
+
+/* เกม */
+.game{
+width:100%;
+margin-top:14px;
+font-size:22px;
+min-height:76px;
+background:
+linear-gradient(
+90deg,
+#160a22,
+#32104d,
+#160a22
+);
+border-color:#b12cff;
+box-shadow:0 0 22px rgba(176,44,255,.2);
+}
+
+/* logout */
+.logout{
+width:100%;
+margin-top:12px;
+font-size:17px;
+}
+
+/* ประวัติ */
+.history{
+margin-top:16px;
+border-top:1px solid #38213f;
+padding-top:14px;
+}
+
+.history h3{
+margin:0 0 8px;
+}
+
+.row{
+display:flex;
+justify-content:space-between;
+padding:9px 0;
+border-bottom:1px solid #29172f;
+color:#bfaec6;
+}
+
+.plus{
+color:#7ff0a8;
+}
+
+.minus{
+color:#ff8585;
+}
+
+/* แบนเนอร์ */
+.banner{
+margin-top:18px;
+border:1px solid #a72cff;
+border-radius:18px;
+padding:20px;
+text-align:center;
+background:
+linear-gradient(
+90deg,
+#26063b,
+#6a0db2,
+#26063b
+);
+box-shadow:0 0 24px rgba(176,42,255,.25);
+}
+
+.banner b{
+font-size:25px;
+}
+
+.banner div{
+color:#ffe66d;
+margin-top:5px;
+}
+
+/* footer */
+footer{
+text-align:center;
+color:#8e759d;
+padding:25px 0 8px;
+}
+
+.footer-logo{
+font-weight:900;
+letter-spacing:7px;
+color:#d18aff;
+font-size:22px;
+}
+
+/* หน้า login/register */
+.form{
+max-width:520px;
+margin:30px auto;
+}
+
+.form h2{
+text-align:center;
+font-size:30px;
+}
+
+.field{
+margin:14px 0;
+}
+
+.field label{
+display:block;
+color:#bca8c6;
+margin-bottom:7px;
+}
+
+.field input{
+width:100%;
+padding:15px;
+border-radius:13px;
+border:1px solid #563064;
+background:#0b0610;
+color:#fff;
+outline:none;
+}
+
+.field input:focus{
+border-color:#b52cff;
+box-shadow:0 0 15px rgba(181,44,255,.25);
+}
+
+.primary,
+.secondary{
+width:100%;
+padding:15px;
+border-radius:14px;
+border:1px solid #a52cff;
+font-weight:900;
+margin-top:10px;
+}
+
+.primary{
+background:linear-gradient(135deg,#c42dff,#5c0bd6);
+color:#fff;
+}
+
+.secondary{
+background:#160b21;
+color:#fff;
+}
+
+/* popup */
 .modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(
-      circle,
-      rgba(126,0,255,.18),
-      rgba(0,0,0,.9)
-    );
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  z-index:9999;
-  backdrop-filter:blur(10px);
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.76);
+display:none;
+align-items:center;
+justify-content:center;
+padding:18px;
+z-index:20;
 }
 
 .modal.show{
-  display:flex;
-  animation:modalFade .35s ease;
-}
-
-@keyframes modalFade{
-  from{
-    opacity:0;
-  }
-  to{
-    opacity:1;
-  }
+display:flex;
 }
 
 .modal-box{
-  width:min(390px,100%);
-  background:
-    linear-gradient(
-      145deg,
-      #1d0d29,
-      #0c080f
-    );
-  border:1px solid #a63cff;
-  border-radius:24px;
-  padding:25px;
-  text-align:center;
-  box-shadow:
-    0 0 20px #861cff,
-    0 0 70px rgba(120,0,255,.35);
-  animation:popupIn .45s cubic-bezier(.2,.8,.2,1);
+width:min(430px,100%);
+background:#12071b;
+border:1px solid #a52cff;
+border-radius:22px;
+padding:24px;
+box-shadow:0 0 40px rgba(170,44,255,.35);
 }
 
-@keyframes popupIn{
-  from{
-    opacity:0;
-    transform:scale(.8) translateY(30px);
-  }
-  to{
-    opacity:1;
-    transform:scale(1) translateY(0);
-  }
+.modal-box h3{
+text-align:center;
+font-size:25px;
+margin-top:0;
 }
 
-.qr-wrap{
-  background:#fff;
-  width:250px;
-  height:250px;
-  margin:18px auto;
-  padding:15px;
-  border-radius:16px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow:
-    0 0 20px rgba(190,70,255,.5);
+.modal-box p{
+color:#c9b9d1;
+text-align:center;
 }
 
-.qr-wrap img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
+.amount{
+width:100%;
+padding:14px;
+border-radius:12px;
+border:1px solid #65337c;
+background:#08030d;
+color:#fff;
+margin:8px 0 12px;
 }
 
-.small{
-  font-size:12px;
-  color:#9b7cad;
+.hidden{
+display:none!important;
 }
 
 /* มือถือ */
-@media(max-width:600px){
+@media(max-width:650px){
 
-.logo{
-  font-size:50px;
-  letter-spacing:6px;
+.topbar{
+gap:6px;
 }
 
-.subtitle{
-  letter-spacing:5px;
-}
-
-.box{
-  padding:22px 16px;
-}
-
-.wallet{
-  grid-template-columns:1fr;
-}
-
-#paymentTimer{
-  font-size:42px;
-  font-weight:900;
-  color:#ff4d6d;
-  text-align:center;
-  margin:10px 0 15px;
-  text-shadow:0 0 15px #ff1744;
-}
-.quick-menu{
-position:fixed;
-top:15px;
-left:12px;
-right:12px;
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:8px;
-z-index:9999;
-}
-
-.quick-menu button,
-.quick-menu a{
-padding:12px 4px;
-border:1px solid #a52cff;
-border-radius:12px;
-background:#160b24;
-color:white;
-text-align:center;
-text-decoration:none;
+.topbar button{
 font-size:12px;
-font-weight:700;
+min-height:48px;
 }
-/* รูปแบบปุ่ม เติมเงิน / ถอนเงิน */
-.wallet{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:14px;
-  margin-top:18px;
+
+.card{
+padding:17px;
+border-radius:20px;
 }
 
 .wallet{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-  margin-top:18px;
+gap:9px;
 }
 
-.wallet .register,
-.wallet .login{
-  width:100%;
-  min-height:78px;
-  border-radius:18px;
-  font-size:20px;
-  font-weight:800;
-  position:relative;
-  padding:15px 45px 15px 15px;
+.action{
+min-height:76px;
+font-size:18px;
 }
 
-.wallet .register{
-  background:linear-gradient(135deg,#b629ff,#5b16d8);
-  color:#fff;
-  border:1px solid #b629ff;
-  box-shadow:0 0 22px rgba(174,38,255,.45);
+.action .icon{
+font-size:26px;
 }
 
-.wallet .login{
-  background:#160b24;
-  color:#fff;
-  border:1px solid #a52cff;
-  box-shadow:0 0 12px rgba(165,44,255,.18);
+.services{
+gap:7px;
 }
 
-.wallet .register::after,
-.wallet .login::after{
-  content:"›";
-  position:absolute;
-  right:18px;
-  top:50%;
-  transform:translateY(-50%);
-  font-size:32px;
-  font-weight:400;
+.service{
+font-size:13px;
+}
+
+.service small{
+font-size:10px;
+}
+
+.credit{
+font-size:48px;
+}
+
 }
 </style>
-
 </head>
 
 <body>
-<div id="quickMenu" class="quick-menu" style="display:none">
-<button onclick="alert('ฟังก์ชั่นนี้เฉพาะสมาชิกพิเศษ คุณไม่ใช่สมาชิกพิเศษ')">คืนยอดเสีย</button>
 
-<a href="https://lin.ee/wqXR8SH" target="_blank">แนะนำเพื่อน</a>
-
-<button onclick="alert('ฟังก์ชั่นนี้เฉพาะสมาชิกพิเศษ คุณไม่ใช่สมาชิกพิเศษ')">VIP</button>
-
-<a href="https://lin.ee/wqXR8SH" target="_blank">ติดต่อ</a>
-</div>
 <section id="homePage" class="page">
-<main class="card">
 
-<div class="logo">PRIME</div>
-<div class="subtitle">MEMBER</div>
+<div class="container">
 
-<div id="guestPanel">
+<nav class="topbar">
 
-<div class="box">
-<h2>สมัครสมาชิก</h2>
-<p>สร้างบัญชีสมาชิกใหม่</p>
+<button onclick="specialAlert()">
+🎁 คืนยอดเสีย
+</button>
 
-<div class="main-buttons">
-<button class="btn register"
-onclick="showPage('registerPage')">
+<button onclick="specialAlert()">
+👥 แนะนำเพื่อน
+</button>
+
+<button onclick="specialAlert()">
+👑 VIP
+</button>
+
+<button onclick="specialAlert()">
+🎧 ติดต่อ
+</button>
+
+</nav>
+
+
+<header class="hero">
+
+<div class="logo">
+PRIME
+</div>
+
+<div class="subtitle">
+MEMBER
+</div>
+
+</header>
+
+
+<div class="notice">
+📣 ✨ ยินดีต้อนรับสู่ PRIME
+&nbsp; เล่นได้ทุกเกม
+&nbsp; บริการตลอด 24 ชั่วโมง
+</div>
+
+
+<!-- สมาชิกที่ยังไม่ล็อกอิน -->
+
+<main id="guestCard" class="card">
+
+<div style="text-align:center">
+
+<div
+class="avatar"
+style="margin:auto"
+>
+👑
+</div>
+
+<h2>
+เข้าสู่ PRIME
+</h2>
+
+<p style="color:#a995b0">
+สมัครสมาชิกหรือเข้าสู่ระบบเพื่อใช้งาน
+</p>
+
+</div>
+
+<button
+class="primary"
+onclick="showPage('registerPage')"
+>
 สมัครสมาชิก
 </button>
-</div>
-</div>
 
-<div class="box">
-<h2>เข้าสู่ระบบ</h2>
-<p>สำหรับสมาชิก</p>
-
-<div class="main-buttons">
-<button class="btn login"
-onclick="showPage('loginPage')">
-ล็อกอิน
-</button>
-</div>
-</div>
-
-<div class="box">
-<h2>เข้าเล่นเกม</h2>
-<p>ระบบเกม</p>
-
-<div class="main-buttons">
-<button class="btn game"
-onclick="enterGame()">
-เข้าเล่นเกม
-</button>
-</div>
-</div>
-
-</div>
-
-
-<div id="memberPanel" class="box member">
-
-<h2 id="memberName">สมาชิก</h2>
-
-<p>ยอดเครดิตปัจจุบัน</p>
-
-<div class="credit" id="creditAmount">
-฿0
-</div>
-
-<div class="wallet">
-
-<button class="btn register"
-onclick="openDeposit()">
-💰 เติมเงิน
+<button
+class="secondary"
+onclick="showPage('loginPage')"
+>
+เข้าสู่ระบบ
 </button>
 
-<button class="btn login"
-onclick="withdrawCredit()">
-🏦 ถอนเงิน
-</button>
-
-</div>
-
-<div class="main-buttons">
-
-<button class="btn game"
-onclick="enterGame()">
+<button
+class="game"
+onclick="enterGame()"
+>
 🎮 เข้าเล่นเกม
 </button>
 
-<button class="btn login"
-onclick="logout()">
-ออกจากระบบ
+</main>
+
+
+<!-- สมาชิกที่ล็อกอินแล้ว -->
+
+<main id="memberCard" class="card hidden">
+
+<div class="member-head">
+
+<div class="avatar">
+👑
+</div>
+
+<div>
+
+<small>
+สถานะสมาชิก
+</small>
+
+<h2 id="memberName">
+สมาชิกทั่วไป
+</h2>
+
+</div>
+
+<div class="badge">
+⭐ MEMBER
+</div>
+
+</div>
+
+
+<!-- เครดิต -->
+
+<div class="credit-box">
+
+<div class="credit-label">
+ยอดเครดิตปัจจุบัน　↻
+</div>
+
+<div
+class="credit"
+id="creditAmount"
+>
+฿0
+</div>
+
+</div>
+
+
+<!-- เติม / ถอน -->
+
+<div class="wallet">
+
+<button
+class="action deposit"
+onclick="openWallet('deposit')"
+>
+
+<span class="icon">
+💰
+</span>
+
+เติมเงิน
+
+<span class="arrow">
+›
+</span>
+
 </button>
 
+
+<button
+class="action"
+onclick="openWallet('withdraw')"
+>
+
+<span class="icon">
+🏦
+</span>
+
+ถอนเงิน
+
+<span class="arrow">
+›
+</span>
+
+</button>
+
+</div>
+
+
+<!-- เมนูบริการ -->
+
+<div class="services">
+
+<button
+class="service"
+onclick="specialAlert()"
+>
+👤
+<span>
+บัญชีสมาชิก
+</span>
+<small>
+จัดการข้อมูล
+</small>
+</button>
+
+
+<button
+class="service"
+onclick="showHistory()"
+>
+📋
+<span>
+ประวัติรายการ
+</span>
+<small>
+เครดิต
+</small>
+</button>
+
+
+<button
+class="service"
+onclick="specialAlert()"
+>
+🎧
+<span>
+ช่วยเหลือ
+</span>
+<small>
+ติดต่อแอดมิน
+</small>
+</button>
+
+</div>
+
+
+<!-- เกม -->
+
+<button
+class="game"
+onclick="enterGame()"
+>
+🎮 &nbsp;เข้าเล่นเกม　›
+</button>
+
+
+<!-- ออกจากระบบ -->
+
+<button
+class="logout"
+onclick="logout()"
+>
+⇥ &nbsp;ออกจากระบบ
+</button>
+
+
+<!-- ประวัติ -->
+
+<div
+id="history"
+class="history hidden"
+>
+
+<h3>
+ประวัติรายการ
+</h3>
+
+<div id="historyList">
+ยังไม่มีรายการ
 </div>
 
 </div>
 
 </main>
+
+
+<div class="banner">
+
+<b>
+🎁 PRIME 1688
+</b>
+
+<div>
+
+</div>
+
+</div>
+
+
+<footer>
+
+<div class="footer-logo">
+PRIME
+</div>
+
+<div>
+สมาชิก　|　บริการ　|　ติดต่อ
+</div>
+
+<div>
+© 2026 PRIME
+</div>
+
+</footer>
+
+</div>
+
 </section>
 
 
-<section id="registerPage" class="page form-page">
+<!-- สมัครสมาชิก -->
 
-<main class="card">
+<section
+id="registerPage"
+class="page hidden"
+>
 
-<div class="logo">PRIME</div>
+<div class="container form card">
 
-<div class="box">
+<div
+class="logo"
+style="font-size:48px;text-align:center"
+>
+PRIME
+</div>
 
-<h2>สมัครสมาชิก</h2>
+<h2>
+สมัครสมาชิก
+</h2>
+
+
+<div class="field">
+
+<label>
+ชื่อสมาชิก
+</label>
 
 <input
-id="registerName"
-placeholder="ชื่อสมาชิก">
+id="regName"
+placeholder="กรอกชื่อ"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+เบอร์โทรศัพท์
+</label>
 
 <input
-id="registerPhone"
-type="tel"
-placeholder="เบอร์โทรศัพท์">
+id="regPhone"
+inputmode="tel"
+placeholder="กรอกเบอร์โทร"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+รหัสผ่าน
+</label>
 
 <input
-id="registerPassword"
+id="regPass"
 type="password"
-placeholder="รหัสผ่าน">
+placeholder="กรอกรหัสผ่าน"
+>
 
-<h3 style="margin-top:20px">
-ข้อมูลบัญชีธนาคาร
-</h3>
+</div>
 
-<input
-id="registerBank"
-placeholder="ธนาคาร">
-
-<input
-id="registerAccount"
-placeholder="เลขบัญชีธนาคาร">
-
-<input
-id="registerAccountName"
-placeholder="ชื่อบัญชีธนาคาร">
-
-<div class="main-buttons">
 
 <button
-class="btn register"
-onclick="register()">
+class="primary"
+onclick="register()"
+>
 สมัครสมาชิก
 </button>
 
+
 <button
-class="btn login"
-onclick="showPage('homePage')">
-กลับ
+class="secondary"
+onclick="showPage('homePage')"
+>
+กลับหน้าแรก
 </button>
 
 </div>
 
-</div>
-
-</main>
 </section>
 
 
-<section id="loginPage" class="page form-page">
+<!-- Login -->
 
-<main class="card">
+<section
+id="loginPage"
+class="page hidden"
+>
 
-<div class="logo">PRIME</div>
+<div class="container form card">
 
-<div class="box">
+<div
+class="logo"
+style="font-size:48px;text-align:center"
+>
+PRIME
+</div>
 
-<h2>เข้าสู่ระบบ</h2>
+<h2>
+เข้าสู่ระบบ
+</h2>
+
+
+<div class="field">
+
+<label>
+เบอร์โทรศัพท์
+</label>
 
 <input
 id="loginPhone"
-type="tel"
-placeholder="เบอร์โทรศัพท์">
+inputmode="tel"
+placeholder="กรอกเบอร์โทร"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+รหัสผ่าน
+</label>
 
 <input
-id="loginPassword"
+id="loginPass"
 type="password"
-placeholder="รหัสผ่าน">
+placeholder="กรอกรหัสผ่าน"
+>
 
-<div class="main-buttons">
+</div>
+
 
 <button
-class="btn register"
-onclick="login()">
+class="primary"
+onclick="login()"
+>
 ล็อกอิน
 </button>
 
+
 <button
-class="btn login"
-onclick="showPage('homePage')">
-กลับ
+class="secondary"
+onclick="showPage('homePage')"
+>
+กลับหน้าแรก
 </button>
 
 </div>
 
-</div>
-
-</main>
 </section>
 
 
-<!-- QR PAYMENT -->
+<!-- Popup เติม/ถอน -->
 
-<div id="qrModal" class="modal">
+<div
+id="walletModal"
+class="modal"
+>
 
 <div class="modal-box">
 
-<h2>💰 ชำระเงิน</h2>
+<h3 id="walletTitle">
+💰 เติมเครดิต
+</h3>
 
-<p>
-สแกน QR Code เพื่อชำระเงิน
+<p id="walletText">
+ใส่จำนวนเครดิตที่ต้องการเพิ่ม
 </p>
-<div id="paymentTimer">⏱️ 05:00</div>
-<div class="qr-wrap">
 
-<img
-id="paymentQR"
-alt="QR สำหรับชำระเงิน">
+<input
+id="amountInput"
+class="amount"
+type="number"
+min="1"
+step="1"
+placeholder="จำนวนเครดิต"
+>
 
-</div>
-
-<p class="small">
-QR สำหรับชำระเงิน
-</p>
 
 <button
-class="btn login"
-onclick="closeQR()">
-ปิด
+class="primary"
+onclick="submitWallet()"
+>
+ยืนยัน
+</button>
+
+
+<button
+class="secondary"
+onclick="closeModal()"
+>
+ยกเลิก
 </button>
 
 </div>
@@ -1028,21 +1001,27 @@ onclick="closeQR()">
 </div>
 
 
-<!-- GAME ALERT -->
+<!-- Popup เข้าเกม -->
 
-<div id="gameModal" class="modal">
+<div
+id="gameModal"
+class="modal"
+>
 
 <div class="modal-box">
 
-<h2>แจ้งเตือน</h2>
+<h3>
+🎮 เข้าเล่นเกม
+</h3>
 
 <p>
-ยอดเครดิตในการเข้าเล่นต้องมากกว่า 1 บาท
+ยอดเครดิตต้องมากกว่า 1 บาทจึงจะเข้าเล่นเกมได้
 </p>
 
 <button
-class="btn register"
-onclick="closeGameModal()">
+class="primary"
+onclick="closeModal()"
+>
 ตกลง
 </button>
 
@@ -1053,99 +1032,216 @@ onclick="closeGameModal()">
 
 <script>
 
-/*
-QR จริงของคุณ
-ฝังเป็น PNG ในโค้ดแล้ว
-*/
+const KEY="primeDemoUser";
+const CREDIT_KEY="primeDemoCredit";
+const HISTORY_KEY="primeDemoHistory";
 
-const PAYMENT_QR =
-"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtAQAAAAASYd83AAABLElEQVR42mP8z8DAwPCTiYGBgYGBAZVi+agVfqV6BxP7kb/h8gyMX1KfbY1VZ2Jg+bmbgYGJgUFpUQMDE3PpE1U+BsYPqg4Mry0Y/v9m66j/wfJ9gZC4AAPjx323Y2b9YPz85ObJe4pMDKl/7jMyMHEKpLr+ZWD48d95jskPpr/Xwiw1GBh+71QyWv2DheXK2+Dqsww/1itZdf9g/BH65ZqLLMOfz7+fW/xg/DhrxwtBG8ZfesGGbxKYfhft/mrawPDnz+89whVMDKwnOtgZGP5tYr114gfj18u8WsxlLKzvn6VtdGUucZD9Uv+H4f8nsTXlP5g+qj2Vv9fA+P3m9wsPGJn+9q7908nAxPDrmn5fAwsD66V+tleM3x+eOyJSxfTT5sCL4AZGPMEDAFi/erGh4V1jAAAAAElFTkSuQmCC";
+let walletMode="deposit";
 
-
-let credit =
-Number(
-localStorage.getItem("primeCredit") || 0
-);
-
-
-/* เปลี่ยนหน้า */
 
 function showPage(id){
 
 document
 .querySelectorAll(".page")
-.forEach(x=>{
-x.style.display="none";
-});
+.forEach(
+p=>p.classList.add("hidden")
+);
 
 document
 .getElementById(id)
-.style.display="flex";
+.classList.remove("hidden");
+
+window.scrollTo(0,0);
 
 }
 
 
-/* เครดิต */
+function getUser(){
 
-function updateCredit(){
+try{
 
-document
-.getElementById("creditAmount")
-.textContent="฿"+credit;
+return JSON.parse(
+localStorage.getItem(KEY)||"null"
+);
 
-localStorage.setItem(
-"primeCredit",
-credit
+}catch(e){
+
+return null;
+
+}
+
+}
+
+
+function getCredit(){
+
+return Number(
+localStorage.getItem(CREDIT_KEY)||0
 );
 
 }
 
 
-/* สมัครสมาชิก */
+function setCredit(n){
+
+localStorage.setItem(
+CREDIT_KEY,
+String(Math.max(0,n))
+);
+
+render();
+
+}
+
+
+function getHistory(){
+
+try{
+
+return JSON.parse(
+localStorage.getItem(HISTORY_KEY)||"[]"
+);
+
+}catch(e){
+
+return[];
+
+}
+
+}
+
+
+function addHistory(type,amount){
+
+const h=getHistory();
+
+h.unshift({
+
+type:type,
+
+amount:amount,
+
+time:new Date().toLocaleString("th-TH")
+
+});
+
+localStorage.setItem(
+HISTORY_KEY,
+JSON.stringify(h.slice(0,30))
+);
+
+renderHistory();
+
+}
+
+
+function render(){
+
+const u=getUser();
+
+const logged=
+localStorage.getItem("primeLoggedIn")==="1";
+
+
+document
+.getElementById("guestCard")
+.classList
+.toggle("hidden",logged);
+
+
+document
+.getElementById("memberCard")
+.classList
+.toggle("hidden",!logged);
+
+
+if(logged && u){
+
+document
+.getElementById("memberName")
+.textContent=
+u.name||"สมาชิกทั่วไป";
+
+}
+
+
+document
+.getElementById("creditAmount")
+.textContent=
+"฿"+getCredit();
+
+}
+
+
+function renderHistory(){
+
+const list=
+document.getElementById("historyList");
+
+const h=getHistory();
+
+
+if(h.length){
+
+list.innerHTML=
+h.map(x=>`
+
+<div class="row">
+
+<span>
+
+${x.type}
+
+<br>
+
+<small>
+${x.time}
+</small>
+
+</span>
+
+<b class="${x.amount>=0?'plus':'minus'}">
+
+${x.amount>=0?'+':''}${x.amount}
+
+</b>
+
+</div>
+
+`).join("");
+
+}else{
+
+list.innerHTML="ยังไม่มีรายการ";
+
+}
+
+}
+
 
 function register(){
 
-const name =
+const name=
 document
-.getElementById("registerName")
-.value.trim();
+.getElementById("regName")
+.value
+.trim();
 
-const phone =
+const phone=
 document
-.getElementById("registerPhone")
-.value.trim();
+.getElementById("regPhone")
+.value
+.trim();
 
-const password =
+const pass=
 document
-.getElementById("registerPassword")
-.value.trim();
-
-const bank =
-document
-.getElementById("registerBank")
-.value.trim();
-
-const account =
-document
-.getElementById("registerAccount")
-.value.trim();
-
-const accountName =
-document
-.getElementById("registerAccountName")
-.value.trim();
+.getElementById("regPass")
+.value;
 
 
-if(
-!name ||
-!phone ||
-!password ||
-!bank ||
-!account ||
-!accountName
-){
+if(!name||!phone||!pass){
 
-alert("กรุณากรอกข้อมูลให้ครบ");
+alert("กรอกข้อมูลให้ครบ");
 
 return;
 
@@ -1153,160 +1249,77 @@ return;
 
 
 localStorage.setItem(
-"primeUser",
+KEY,
 JSON.stringify({
-
 name:name,
 phone:phone,
-password:password,
-bank:bank,
-account:account,
-accountName:accountName
-
+pass:pass
 })
 );
 
 
-loginMember(name);
+localStorage.setItem(
+"primeLoggedIn",
+"1"
+);
+
+
+localStorage.setItem(
+CREDIT_KEY,
+"0"
+);
+
+
+localStorage.setItem(
+HISTORY_KEY,
+"[]"
+);
+
+
+render();
+
+showPage("homePage");
 
 alert("สมัครสมาชิกเรียบร้อย");
 
 }
 
 
-/* ล็อกอิน */
-
 function login(){
 
-const phone =
-document
-.getElementById("loginPhone")
-.value.trim();
-
-const password =
-document
-.getElementById("loginPassword")
-.value.trim();
-
-const saved =
-localStorage.getItem("primeUser");
+const u=getUser();
 
 
-if(!saved){
+if(!u){
 
-alert("ยังไม่มีบัญชีสมาชิก");
-
-return;
-
-}
-
-
-const user =
-JSON.parse(saved);
-
-
-if(
-phone !== user.phone ||
-password !== user.password
-){
-
-alert("เบอร์โทรหรือรหัสผ่านไม่ถูกต้อง");
-
-return;
-
-}
-
-
-loginMember(user.name);
-
-}
-
-
-/* เข้าสมาชิก */
-
-function loginMember(name){
-
-document
-.getElementById("guestPanel")
-.style.display="none";
-
-document
-.getElementById("memberPanel")
-.style.display="block";
-
-document
-.getElementById("memberName")
-.textContent=name;
-
-updateCredit();
-document.getElementById("quickMenu").style.display="grid";
-showPage("homePage");
-
-}
-
-
-/* ออกจากระบบ */
-
-function logout(){
-
-document
-.getElementById("guestPanel")
-.style.display="block";
-
-document
-.getElementById("memberPanel")
-.style.display="none";
-
-showPage("homePage");
-
-}
-
-
-/* เปิด QR */
-
-function openDeposit(){
-
-document
-.getElementById("paymentQR")
-.src=PAYMENT_QR;
-
-document
-.getElementById("qrModal")
-.classList.add("show");
-startPaymentTimer();
-}
-
-
-/* ปิด QR */
-
-function closeQR(){
-
-document
-.getElementById("qrModal")
-.classList.remove("show");
-
-}
-
-
-/* ถอน */
-
-function withdrawCredit(){
-
-const amount =
-Number(
-prompt(
-"กรอกจำนวนเครดิตที่ต้องการถอน"
-)
+alert(
+"ยังไม่มีบัญชี กรุณาสมัครสมาชิกก่อน"
 );
 
+return;
+
+}
+
+
+const phone=
+document
+.getElementById("loginPhone")
+.value
+.trim();
+
+const pass=
+document
+.getElementById("loginPass")
+.value;
+
 
 if(
-!amount ||
-amount<=0
+phone!==u.phone ||
+pass!==u.pass
 ){
 
 alert(
-"กรุณากรอกจำนวนให้ถูกต้อง"
+"เบอร์โทรหรือรหัสผ่านไม่ถูกต้อง"
 );
 
 return;
@@ -1314,7 +1327,99 @@ return;
 }
 
 
-if(amount>credit){
+localStorage.setItem(
+"primeLoggedIn",
+"1"
+);
+
+render();
+
+showPage("homePage");
+
+alert("เข้าสู่ระบบสำเร็จ");
+
+}
+
+
+function logout(){
+
+localStorage.removeItem(
+"primeLoggedIn"
+);
+
+render();
+
+showPage("homePage");
+
+}
+
+
+function openWallet(mode){
+
+walletMode=mode;
+
+
+document
+.getElementById("walletTitle")
+.textContent=
+mode==="deposit"
+?
+"💰 เติมเครดิต"
+:
+"🏦 ถอนเครดิต";
+
+
+document
+.getElementById("walletText")
+.textContent=
+mode==="deposit"
+?
+"ใส่จำนวนเครดิตที่ต้องการเพิ่ม"
+:
+"ใส่จำนวนเครดิตที่ต้องการถอน";
+
+
+document
+.getElementById("amountInput")
+.value="";
+
+
+document
+.getElementById("walletModal")
+.classList
+.add("show");
+
+}
+
+
+function submitWallet(){
+
+const n=
+Number(
+document
+.getElementById("amountInput")
+.value
+);
+
+
+if(
+!Number.isFinite(n) ||
+n<1
+){
+
+alert(
+"กรุณาใส่จำนวนให้ถูกต้อง"
+);
+
+return;
+
+}
+
+
+if(
+walletMode==="withdraw" &&
+n>getCredit()
+){
 
 alert(
 "เครดิตไม่เพียงพอ"
@@ -1325,30 +1430,85 @@ return;
 }
 
 
-credit-=amount;
+const delta=
+walletMode==="deposit"
+?
+n
+:
+-n;
 
-updateCredit();
+
+setCredit(
+getCredit()+delta
+);
+
+
+addHistory(
+walletMode==="deposit"
+?
+"เติมเครดิต"
+:
+"ถอนเครดิต",
+delta
+);
+
+
+closeModal();
+
 
 alert(
-"ถอนเครดิตเรียบร้อย"
+walletMode==="deposit"
+?
+"เพิ่มเครดิต"
+:
+"ถอนเครดิต"
 );
 
 }
 
 
-/* เข้าเกม */
+function showHistory(){
+
+document
+.getElementById("history")
+.classList
+.toggle("hidden");
+
+renderHistory();
+
+}
+
 
 function enterGame(){
 
-if(credit<=1){
+if(
+!localStorage.getItem("primeLoggedIn")
+){
 
-document
-.getElementById("gameModal")
-.classList.add("show");
+alert(
+"กรุณาเข้าสู่ระบบก่อน"
+);
+
+showPage("loginPage");
 
 return;
 
 }
+
+
+if(
+getCredit()<=1
+){
+
+document
+.getElementById("gameModal")
+.classList
+.add("show");
+
+return;
+
+}
+
 
 alert(
 "เข้าสู่หน้าเกม"
@@ -1357,51 +1517,31 @@ alert(
 }
 
 
-/* ปิดแจ้งเตือน */
+function specialAlert(){
 
-function closeGameModal(){
+alert(
+"ฟังก์ชันนี้เป็นส่วนของ PRIME"
+);
+
+}
+
+
+function closeModal(){
 
 document
-.getElementById("gameModal")
-.classList.remove("show");
+.querySelectorAll(".modal")
+.forEach(
+m=>m.classList.remove("show")
+);
 
 }
 
 
-/* เริ่มต้น */
+render();
 
-showPage("homePage");
-
-let paymentTimerInterval;
-
-function startPaymentTimer(){
-  let time = 300;
-  clearInterval(paymentTimerInterval);
-
-  const timer = document.getElementById("paymentTimer");
-  if(!timer) return;
-
-  timer.textContent = "⏱️ 05:00";
-
-  paymentTimerInterval = setInterval(function(){
-    time--;
-
-    const min = Math.floor(time / 60);
-    const sec = time % 60;
-
-    timer.textContent =
-      "⏱️ " +
-      String(min).padStart(2,"0") +
-      ":" +
-      String(sec).padStart(2,"0");
-
-    if(time <= 0){
-      clearInterval(paymentTimerInterval);
-      timer.textContent = "⏱️ 00:00";
-    }
-  },1000);
-}
+renderHistory();
 
 </script>
+
 </body>
 </html>
