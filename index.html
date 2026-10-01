@@ -1191,7 +1191,7 @@ document
 document
 .getElementById("qrModal")
 .classList.add("show");
-
+startPaymentTimer();
 }
 
 
@@ -1290,6 +1290,35 @@ document
 
 showPage("homePage");
 
+let paymentTimerInterval;
+
+function startPaymentTimer(){
+  let time = 300;
+  clearInterval(paymentTimerInterval);
+
+  const timer = document.getElementById("paymentTimer");
+  if(!timer) return;
+
+  timer.textContent = "⏱️ 05:00";
+
+  paymentTimerInterval = setInterval(function(){
+    time--;
+
+    const min = Math.floor(time / 60);
+    const sec = time % 60;
+
+    timer.textContent =
+      "⏱️ " +
+      String(min).padStart(2,"0") +
+      ":" +
+      String(sec).padStart(2,"0");
+
+    if(time <= 0){
+      clearInterval(paymentTimerInterval);
+      timer.textContent = "⏱️ 00:00";
+    }
+  },1000);
+}
 </script>
 
 </body>
