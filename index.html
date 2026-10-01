@@ -170,6 +170,540 @@ object-fit:contain
 font-size:12px;
 color:#777
 }
+</<style>
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  color:#fff;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(157,55,255,.22),transparent 28%),
+    radial-gradient(circle at 80% 30%,rgba(91,0,255,.18),transparent 30%),
+    radial-gradient(circle at 50% 100%,rgba(184,0,255,.15),transparent 35%),
+    #050307;
+  overflow-x:hidden;
+}
+
+/* แสงเคลื่อนที่บนพื้นหลัง */
+body:before{
+  content:"";
+  position:fixed;
+  inset:-50%;
+  pointer-events:none;
+  background:
+    conic-gradient(
+      from 0deg,
+      transparent,
+      rgba(170,70,255,.12),
+      transparent,
+      rgba(93,0,255,.10),
+      transparent
+    );
+  animation:rotateGlow 14s linear infinite;
+  z-index:-2;
+}
+
+/* จุดแสง */
+body:after{
+  content:"";
+  position:fixed;
+  width:420px;
+  height:420px;
+  left:50%;
+  top:45%;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(
+    circle,
+    rgba(168,60,255,.16),
+    transparent 70%
+  );
+  filter:blur(20px);
+  animation:pulseLight 3s ease-in-out infinite;
+  pointer-events:none;
+  z-index:-1;
+}
+
+@keyframes rotateGlow{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+@keyframes pulseLight{
+  0%,100%{
+    opacity:.45;
+    transform:translate(-50%,-50%) scale(.8);
+  }
+  50%{
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1.25);
+  }
+}
+
+.page{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:30px 15px;
+  animation:pageIn .8s ease;
+}
+
+@keyframes pageIn{
+  from{
+    opacity:0;
+    transform:scale(.97);
+  }
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+.card{
+  width:min(760px,100%);
+  text-align:center;
+  position:relative;
+}
+
+/* โลโก้ PRIME */
+.logo{
+  font-size:64px;
+  font-weight:1000;
+  letter-spacing:8px;
+  color:#fff;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 15px #a63cff,
+    0 0 35px #8b20ff,
+    0 0 70px #6900ff;
+  animation:
+    logoGlow 2s ease-in-out infinite alternate,
+    logoFloat 4s ease-in-out infinite;
+}
+
+@keyframes logoGlow{
+  from{
+    text-shadow:
+      0 0 5px #fff,
+      0 0 15px #a63cff,
+      0 0 30px #8b20ff;
+  }
+  to{
+    text-shadow:
+      0 0 8px #fff,
+      0 0 25px #c66cff,
+      0 0 55px #9b20ff,
+      0 0 90px #6500ff;
+  }
+}
+
+@keyframes logoFloat{
+  0%,100%{
+    transform:translateY(0);
+  }
+  50%{
+    transform:translateY(-7px);
+  }
+}
+
+.subtitle{
+  color:#c89cff;
+  letter-spacing:7px;
+  margin:4px 0 36px;
+  text-shadow:0 0 15px #9d36ff;
+  animation:subtitleGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes subtitleGlow{
+  from{
+    opacity:.55;
+  }
+  to{
+    opacity:1;
+  }
+}
+
+/* กล่อง */
+.box{
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(35,15,50,.92),
+      rgba(10,7,14,.96)
+    );
+  border:1px solid rgba(171,77,255,.35);
+  border-radius:22px;
+  padding:25px 20px;
+  margin-bottom:18px;
+  box-shadow:
+    0 0 20px rgba(133,0,255,.12),
+    inset 0 0 30px rgba(137,0,255,.04);
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease,
+    border-color .35s ease;
+  animation:boxFloat 5s ease-in-out infinite;
+}
+
+.box:nth-child(2){
+  animation-delay:.7s;
+}
+
+.box:nth-child(3){
+  animation-delay:1.4s;
+}
+
+.box:hover{
+  transform:
+    translateY(-8px)
+    scale(1.015);
+  border-color:#b64cff;
+  box-shadow:
+    0 0 15px #9b25ff,
+    0 0 40px rgba(155,37,255,.35),
+    inset 0 0 30px rgba(155,37,255,.1);
+}
+
+@keyframes boxFloat{
+  0%,100%{
+    transform:translateY(0);
+  }
+  50%{
+    transform:translateY(-3px);
+  }
+}
+
+/* เส้นแสงวิ่งบนกล่อง */
+.box:before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-120%;
+  width:70%;
+  height:2px;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    #d58aff,
+    #8b20ff,
+    transparent
+  );
+  box-shadow:0 0 15px #a62cff;
+  animation:scanLine 4s linear infinite;
+}
+
+@keyframes scanLine{
+  0%{
+    left:-120%;
+  }
+  100%{
+    left:150%;
+  }
+}
+
+h2{
+  text-shadow:0 0 15px rgba(183,75,255,.5);
+}
+
+h3{
+  color:#d7b1ff;
+}
+
+p{
+  color:#aaa;
+}
+
+/* ปุ่ม */
+.main-buttons{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:18px;
+}
+
+.btn{
+  position:relative;
+  overflow:hidden;
+  width:100%;
+  border:0;
+  border-radius:14px;
+  padding:16px;
+  font-size:16px;
+  font-weight:800;
+  cursor:pointer;
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.btn:before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:60%;
+  height:100%;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.4),
+    transparent
+  );
+  transform:skewX(-20deg);
+  animation:buttonShine 3s infinite;
+}
+
+@keyframes buttonShine{
+  0%{
+    left:-100%;
+  }
+  45%,100%{
+    left:150%;
+  }
+}
+
+.btn:hover{
+  transform:translateY(-3px) scale(1.02);
+}
+
+.register{
+  color:#fff;
+  background:
+    linear-gradient(
+      135deg,
+      #b72cff,
+      #7b16e8,
+      #4e00a8
+    );
+  box-shadow:
+    0 0 12px rgba(174,50,255,.6),
+    0 0 30px rgba(117,0,255,.3);
+  animation:buttonPulse 2.2s infinite;
+}
+
+.login{
+  color:#fff;
+  background:
+    linear-gradient(
+      135deg,
+      #21112e,
+      #120b18
+    );
+  border:1px solid #7130a5;
+  box-shadow:0 0 15px rgba(125,40,190,.2);
+}
+
+.game{
+  color:#fff;
+  background:
+    linear-gradient(
+      135deg,
+      #37105b,
+      #160820
+    );
+  border:1px solid #9a36e8;
+  box-shadow:
+    0 0 15px rgba(157,48,255,.4),
+    inset 0 0 15px rgba(157,48,255,.08);
+  animation:gameGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes buttonPulse{
+  0%,100%{
+    box-shadow:
+      0 0 10px rgba(174,50,255,.45),
+      0 0 25px rgba(117,0,255,.2);
+  }
+  50%{
+    box-shadow:
+      0 0 20px rgba(205,90,255,.8),
+      0 0 45px rgba(117,0,255,.45);
+  }
+}
+
+@keyframes gameGlow{
+  from{
+    box-shadow:
+      0 0 10px rgba(157,48,255,.35);
+  }
+  to{
+    box-shadow:
+      0 0 25px rgba(188,75,255,.75),
+      0 0 50px rgba(112,0,255,.3);
+  }
+}
+
+/* ช่องกรอก */
+input{
+  width:100%;
+  padding:16px;
+  margin:7px 0;
+  border-radius:12px;
+  border:1px solid #45215d;
+  background:#08050b;
+  color:#fff;
+  font-size:16px;
+  outline:none;
+  transition:.3s;
+}
+
+input:focus{
+  border-color:#b548ff;
+  box-shadow:
+    0 0 10px rgba(181,72,255,.5),
+    inset 0 0 10px rgba(181,72,255,.05);
+}
+
+/* เครดิต */
+.credit{
+  font-size:42px;
+  font-weight:900;
+  color:#d6a0ff;
+  text-shadow:
+    0 0 10px #a12cff,
+    0 0 30px #7515c9;
+  animation:creditGlow 1.8s infinite alternate;
+}
+
+@keyframes creditGlow{
+  from{
+    transform:scale(1);
+  }
+  to{
+    transform:scale(1.05);
+  }
+}
+
+.wallet{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:15px;
+}
+
+/* หน้า */
+.form-page{
+  display:none;
+}
+
+/* Popup */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(
+      circle,
+      rgba(126,0,255,.18),
+      rgba(0,0,0,.9)
+    );
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:9999;
+  backdrop-filter:blur(10px);
+}
+
+.modal.show{
+  display:flex;
+  animation:modalFade .35s ease;
+}
+
+@keyframes modalFade{
+  from{
+    opacity:0;
+  }
+  to{
+    opacity:1;
+  }
+}
+
+.modal-box{
+  width:min(390px,100%);
+  background:
+    linear-gradient(
+      145deg,
+      #1d0d29,
+      #0c080f
+    );
+  border:1px solid #a63cff;
+  border-radius:24px;
+  padding:25px;
+  text-align:center;
+  box-shadow:
+    0 0 20px #861cff,
+    0 0 70px rgba(120,0,255,.35);
+  animation:popupIn .45s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes popupIn{
+  from{
+    opacity:0;
+    transform:scale(.8) translateY(30px);
+  }
+  to{
+    opacity:1;
+    transform:scale(1) translateY(0);
+  }
+}
+
+.qr-wrap{
+  background:#fff;
+  width:250px;
+  height:250px;
+  margin:18px auto;
+  padding:15px;
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:
+    0 0 20px rgba(190,70,255,.5);
+}
+
+.qr-wrap img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+.small{
+  font-size:12px;
+  color:#9b7cad;
+}
+
+/* มือถือ */
+@media(max-width:600px){
+
+.logo{
+  font-size:50px;
+  letter-spacing:6px;
+}
+
+.subtitle{
+  letter-spacing:5px;
+}
+
+.box{
+  padding:22px 16px;
+}
+
+.wallet{
+  grid-template-columns:1fr;
+}
+
+}
 </style>
 </head>
 
