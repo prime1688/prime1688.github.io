@@ -861,7 +861,28 @@ placeholder="กรอกรหัสผ่าน"
 >
 
 </div>
+<div class="field">
+<label>ธนาคาร</label>
+<select id="regBank">
+<option value="">เลือกธนาคาร</option>
+<option>กสิกรไทย</option>
+<option>กรุงไทย</option>
+<option>กรุงเทพ</option>
+<option>ไทยพาณิชย์</option>
+<option>กรุงศรี</option>
+<option>ธนาคารอื่น</option>
+</select>
+</div>
 
+<div class="field">
+<label>ชื่อบัญชีธนาคาร</label>
+<input id="regBankName" type="text" placeholder="กรอกชื่อบัญชี">
+</div>
+
+<div class="field">
+<label>เลขบัญชีธนาคาร</label>
+<input id="regBankNumber" type="text" placeholder="กรอกเลขบัญชี">
+</div>
 
 <button
 class="primary"
@@ -1043,19 +1064,26 @@ function showPage(id){
 
 document
 .querySelectorAll(".page")
-.forEach(
-p=>p.classList.add("hidden")
-);
+.forEach(p=>p.classList.add("hidden"));
 
 document
 .getElementById(id)
 .classList.remove("hidden");
 
+const topbar = document.querySelector(".topbar");
+const gameBtn = document.querySelector(".game");
+
+if(topbar){
+  topbar.classList.toggle("hidden", id === "registerPage");
+}
+
+if(gameBtn){
+  gameBtn.classList.toggle("hidden", id === "registerPage");
+}
+
 window.scrollTo(0,0);
 
 }
-
-
 function getUser(){
 
 try{
