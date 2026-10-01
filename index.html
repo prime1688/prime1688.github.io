@@ -742,14 +742,22 @@ font-weight:700;
   margin-top:18px;
 }
 
+.wallet{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-top:18px;
+}
+
 .wallet .register,
 .wallet .login{
   width:100%;
-  min-height:72px;
+  min-height:78px;
   border-radius:18px;
   font-size:20px;
   font-weight:800;
-  cursor:pointer;
+  position:relative;
+  padding:15px 45px 15px 15px;
 }
 
 .wallet .register{
@@ -764,6 +772,17 @@ font-weight:700;
   color:#fff;
   border:1px solid #a52cff;
   box-shadow:0 0 12px rgba(165,44,255,.18);
+}
+
+.wallet .register::after,
+.wallet .login::after{
+  content:"›";
+  position:absolute;
+  right:18px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:32px;
+  font-weight:400;
 }
 </style>
 
