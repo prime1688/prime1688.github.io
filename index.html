@@ -12,7 +12,7 @@ body{
   margin:0;
   background:#070708;
   color:#f3f3f3;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 
 .page{
@@ -20,24 +20,24 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:25px 15px
+  padding:25px 15px;
 }
 
 .card{
   width:min(760px,100%);
-  text-align:center
+  text-align:center;
 }
 
 .logo{
   font-size:64px;
   font-weight:900;
-  letter-spacing:6px
+  letter-spacing:6px;
 }
 
 .subtitle{
   color:#999;
   letter-spacing:5px;
-  margin:4px 0 36px
+  margin:4px 0 36px;
 }
 
 .box{
@@ -45,22 +45,22 @@ body{
   border:1px solid #292929;
   border-radius:18px;
   padding:25px 20px;
-  margin-bottom:18px
+  margin-bottom:18px;
 }
 
 h2,h3{
-  margin-top:0
+  margin-top:0;
 }
 
 p{
-  color:#999
+  color:#999;
 }
 
 .main-buttons{
   display:flex;
   flex-direction:column;
   gap:10px;
-  margin-top:18px
+  margin-top:18px;
 }
 
 .btn{
@@ -70,56 +70,56 @@ p{
   padding:15px;
   font-size:16px;
   font-weight:700;
-  cursor:pointer
+  cursor:pointer;
 }
 
 .register{
   background:#fff;
-  color:#000
+  color:#000;
 }
 
 .login{
   background:#222;
   color:#fff;
-  border:1px solid #444
+  border:1px solid #444;
 }
 
 .game{
   background:#151515;
   color:#fff;
-  border:1px solid #555
+  border:1px solid #555;
 }
 
 .form-page{
-  display:none
+  display:none;
 }
 
 input{
   width:100%;
-  padding:14px;
+  padding:15px;
   margin:7px 0;
   border-radius:10px;
   border:1px solid #333;
   background:#080808;
   color:#fff;
-  font-size:16px
+  font-size:16px;
 }
 
 .credit{
   font-size:38px;
   font-weight:800;
-  margin:12px 0 20px
+  margin:12px 0 20px;
 }
 
 .member{
-  display:none
+  display:none;
 }
 
 .wallet{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
-  margin-top:15px
+  margin-top:15px;
 }
 
 .modal{
@@ -130,11 +130,11 @@ input{
   align-items:center;
   justify-content:center;
   padding:20px;
-  z-index:9999
+  z-index:9999;
 }
 
 .modal.show{
-  display:flex
+  display:flex;
 }
 
 .modal-box{
@@ -144,7 +144,7 @@ input{
   border-radius:20px;
   padding:25px;
   text-align:center;
-  box-shadow:0 20px 60px rgba(0,0,0,.5)
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
 }
 
 .qr-wrap{
@@ -156,12 +156,12 @@ input{
   border-radius:14px;
   display:flex;
   align-items:center;
-  justify-content:center
+  justify-content:center;
 }
 
 #qrcode img{
   display:block;
-  margin:auto
+  margin:auto;
 }
 
 .close{
@@ -173,100 +173,157 @@ input{
   color:#000;
   font-weight:700;
   margin-top:10px;
-  font-size:16px
+  font-size:16px;
 }
 
 .small{
   font-size:12px;
-  color:#666
+  color:#777;
 }
 </style>
 </head>
 
 <body>
 
-<!-- HOME -->
+<!-- ================= HOME ================= -->
+
 <section id="homePage" class="page">
+
 <main class="card">
 
 <div class="logo">PRIME</div>
 <div class="subtitle">MEMBER</div>
 
+
 <!-- GUEST -->
+
 <div id="guestPanel">
 
 <div class="box">
+
 <h2>สมัครสมาชิก</h2>
+
 <p>สร้างบัญชีสมาชิกใหม่</p>
 
 <div class="main-buttons">
-<button class="btn register"
+
+<button
+class="btn register"
 onclick="showPage('registerPage')">
+
 สมัครสมาชิก
+
 </button>
-</div>
+
 </div>
 
+</div>
+
+
 <div class="box">
+
 <h2>เข้าสู่ระบบ</h2>
+
 <p>สำหรับสมาชิก</p>
 
 <div class="main-buttons">
-<button class="btn login"
+
+<button
+class="btn login"
 onclick="showPage('loginPage')">
+
 ล็อกอิน
+
 </button>
-</div>
+
 </div>
 
+</div>
+
+
 <div class="box">
+
 <h2>เข้าเล่นเกม</h2>
+
 <p>ระบบเกม</p>
 
 <div class="main-buttons">
-<button class="btn game"
+
+<button
+class="btn game"
 onclick="enterGame()">
+
 เข้าเล่นเกม
+
 </button>
+
 </div>
+
 </div>
 
 </div>
 
 
 <!-- MEMBER -->
+
 <div id="memberPanel" class="box member">
 
-<h2 id="memberName">สมาชิก</h2>
+<h2 id="memberName">
+สมาชิก
+</h2>
 
-<p>ยอดเครดิตปัจจุบัน</p>
+<p>
+ยอดเครดิตปัจจุบัน
+</p>
 
-<div class="credit" id="creditAmount">฿0</div>
+<div
+class="credit"
+id="creditAmount">
+
+฿0
+
+</div>
+
 
 <div class="wallet">
 
-<button class="btn register"
+<button
+class="btn register"
 onclick="openDeposit()">
+
 💰 เติมเงิน
+
 </button>
 
-<button class="btn login"
+
+<button
+class="btn login"
 onclick="withdrawCredit()">
+
 🏦 ถอนเงิน
+
 </button>
 
 </div>
 
+
 <div class="main-buttons">
 
-<button class="btn game"
+<button
+class="btn game"
 onclick="enterGame()">
+
 🎮 เข้าเล่นเกม
+
 </button>
 
-<button class="btn login"
+
+<button
+class="btn login"
 onclick="logout()">
+
 ออกจากระบบ
+
 </button>
 
 </div>
@@ -274,11 +331,15 @@ onclick="logout()">
 </div>
 
 </main>
+
 </section>
 
 
-<!-- REGISTER -->
-<section id="registerPage" class="page form-page">
+<!-- ================= REGISTER ================= -->
+
+<section
+id="registerPage"
+class="page form-page">
 
 <main class="card">
 
@@ -288,46 +349,65 @@ onclick="logout()">
 
 <h2>สมัครสมาชิก</h2>
 
+
 <input
 id="registerName"
 type="text"
 placeholder="ชื่อสมาชิก">
 
+
 <input
 id="registerPhone"
-type="text"
+type="tel"
 placeholder="เบอร์โทรศัพท์">
+
 
 <input
 id="registerPassword"
 type="password"
 placeholder="รหัสผ่าน">
 
+
+<h3 style="margin-top:20px">
+ข้อมูลบัญชีธนาคาร
+</h3>
+
+
 <input
 id="registerBank"
 type="text"
 placeholder="ธนาคาร">
+
 
 <input
 id="registerAccount"
 type="text"
 placeholder="เลขบัญชีธนาคาร">
 
+
 <input
 id="registerAccountName"
 type="text"
 placeholder="ชื่อบัญชีธนาคาร">
 
+
 <div class="main-buttons">
 
-<button class="btn register"
+<button
+class="btn register"
 onclick="register()">
+
 สมัครสมาชิก
+
 </button>
 
-<button class="btn login"
+
+<button
+class="btn login"
 onclick="showPage('homePage')">
+
 กลับ
+
 </button>
 
 </div>
@@ -335,11 +415,15 @@ onclick="showPage('homePage')">
 </div>
 
 </main>
+
 </section>
 
 
-<!-- LOGIN -->
-<section id="loginPage" class="page form-page">
+<!-- ================= LOGIN ================= -->
+
+<section
+id="loginPage"
+class="page form-page">
 
 <main class="card">
 
@@ -349,26 +433,36 @@ onclick="showPage('homePage')">
 
 <h2>เข้าสู่ระบบ</h2>
 
+
 <input
 id="loginPhone"
-type="text"
+type="tel"
 placeholder="เบอร์โทรศัพท์">
+
 
 <input
 id="loginPassword"
 type="password"
 placeholder="รหัสผ่าน">
 
+
 <div class="main-buttons">
 
-<button class="btn register"
+<button
+class="btn register"
 onclick="login()">
+
 ล็อกอิน
+
 </button>
 
-<button class="btn login"
+
+<button
+class="btn login"
 onclick="showPage('homePage')">
+
 กลับ
+
 </button>
 
 </div>
@@ -376,38 +470,55 @@ onclick="showPage('homePage')">
 </div>
 
 </main>
+
 </section>
 
 
-<!-- QR POPUP -->
-<div id="qrModal" class="modal">
+<!-- ================= QR POPUP ================= -->
+
+<div
+id="qrModal"
+class="modal">
 
 <div class="modal-box">
 
 <h2>💰 เติมเงิน</h2>
 
-<p>สแกน QR Code</p>
+<p>
+สแกน QR Code
+</p>
+
 
 <div class="qr-wrap">
+
 <div id="qrcode"></div>
+
 </div>
+
 
 <p class="small">
 QR สำหรับการสาธิตเท่านั้น
 </p>
 
+
 <button
 class="btn login"
 onclick="closeQR()">
+
 ปิด
+
 </button>
 
 </div>
+
 </div>
 
 
-<!-- GAME POPUP -->
-<div id="gameModal" class="modal">
+<!-- ================= GAME POPUP ================= -->
+
+<div
+id="gameModal"
+class="modal">
 
 <div class="modal-box">
 
@@ -417,79 +528,112 @@ onclick="closeQR()">
 ยอดเครดิตในการเข้าเล่นต้องมากกว่า 1 บาท
 </p>
 
+
 <button
 class="close"
 onclick="closeGameModal()">
+
 ตกลง
+
 </button>
 
 </div>
+
 </div>
 
 
 <!-- QR LIBRARY -->
+
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
 
 <script>
 
-/* เครดิตสาธิต */
-let credit=Number(
+/* =========================
+   CREDIT
+========================= */
+
+let credit = Number(
 localStorage.getItem("primeCredit") || 0
 );
 
 
-/* เปลี่ยนหน้า */
+/* =========================
+   PAGE
+========================= */
+
 function showPage(id){
 
-document.querySelectorAll(".page")
+document
+.querySelectorAll(".page")
 .forEach(page=>{
 page.style.display="none";
 });
 
-document.getElementById(id)
+document
+.getElementById(id)
 .style.display="flex";
+
 }
 
 
-/* อัปเดตเครดิต */
+/* =========================
+   UPDATE CREDIT
+========================= */
+
 function updateCredit(){
 
-document.getElementById("creditAmount")
+document
+.getElementById("creditAmount")
 .textContent="฿"+credit;
 
 localStorage.setItem(
 "primeCredit",
 credit
 );
+
 }
 
 
-/* สมัครสมาชิก */
+/* =========================
+   REGISTER
+========================= */
+
 function register(){
 
-const name=
-document.getElementById("registerName")
+const name =
+document
+.getElementById("registerName")
 .value.trim();
 
-const phone=
-document.getElementById("registerPhone")
+
+const phone =
+document
+.getElementById("registerPhone")
 .value.trim();
 
-const password=
-document.getElementById("registerPassword")
+
+const password =
+document
+.getElementById("registerPassword")
 .value.trim();
 
-const bank=
-document.getElementById("registerBank")
+
+const bank =
+document
+.getElementById("registerBank")
 .value.trim();
 
-const account=
-document.getElementById("registerAccount")
+
+const account =
+document
+.getElementById("registerAccount")
 .value.trim();
 
-const accountName=
-document.getElementById("registerAccountName")
+
+const accountName =
+document
+.getElementById("registerAccountName")
 .value.trim();
 
 
@@ -505,16 +649,19 @@ if(
 alert("กรุณากรอกข้อมูลให้ครบ");
 
 return;
+
 }
 
 
-const user={
+const user = {
+
 name:name,
 phone:phone,
 password:password,
 bank:bank,
 account:account,
 accountName:accountName
+
 };
 
 
@@ -526,22 +673,31 @@ JSON.stringify(user)
 
 loginMember(name);
 
+
 alert("สมัครสมาชิกเรียบร้อย");
+
 }
 
 
-/* ล็อกอิน */
+/* =========================
+   LOGIN
+========================= */
+
 function login(){
 
-const phone=
-document.getElementById("loginPhone")
+const phone =
+document
+.getElementById("loginPhone")
 .value.trim();
 
-const password=
-document.getElementById("loginPassword")
+
+const password =
+document
+.getElementById("loginPassword")
 .value.trim();
 
-const saved=
+
+const saved =
 localStorage.getItem("primeUser");
 
 
@@ -550,67 +706,95 @@ if(!saved){
 alert("ยังไม่มีบัญชีสมาชิก");
 
 return;
+
 }
 
 
-const user=JSON.parse(saved);
+const user =
+JSON.parse(saved);
 
 
 if(
-phone!==user.phone ||
-password!==user.password
+phone !== user.phone ||
+password !== user.password
 ){
 
 alert("เบอร์โทรหรือรหัสผ่านไม่ถูกต้อง");
 
 return;
+
 }
 
 
 loginMember(user.name);
+
 }
 
 
-/* เข้าสมาชิก */
+/* =========================
+   MEMBER
+========================= */
+
 function loginMember(name){
 
-document.getElementById("guestPanel")
+document
+.getElementById("guestPanel")
 .style.display="none";
 
-document.getElementById("memberPanel")
+
+document
+.getElementById("memberPanel")
 .style.display="block";
 
-document.getElementById("memberName")
+
+document
+.getElementById("memberName")
 .textContent=name;
+
 
 updateCredit();
 
+
 showPage("homePage");
+
 }
 
 
-/* ออกจากระบบ */
+/* =========================
+   LOGOUT
+========================= */
+
 function logout(){
 
-document.getElementById("guestPanel")
+document
+.getElementById("guestPanel")
 .style.display="block";
 
-document.getElementById("memberPanel")
+
+document
+.getElementById("memberPanel")
 .style.display="none";
 
+
 showPage("homePage");
+
 }
 
 
-/* เปิด QR ทันที */
+/* =========================
+   OPEN QR
+========================= */
+
 function openDeposit(){
 
-document
-.getElementById("qrModal")
-.classList.add("show");
+const modal =
+document.getElementById("qrModal");
 
 
-const qr=
+modal.classList.add("show");
+
+
+const qr =
 document.getElementById("qrcode");
 
 
@@ -618,27 +802,41 @@ qr.innerHTML="";
 
 
 new QRCode(qr,{
+
 text:"PRIME-DEMO-PAYMENT",
+
 width:220,
 height:220
+
 });
+
 }
 
 
-/* ปิด QR */
+/* =========================
+   CLOSE QR
+========================= */
+
 function closeQR(){
 
 document
 .getElementById("qrModal")
 .classList.remove("show");
+
 }
 
 
-/* ถอนเครดิตสาธิต */
+/* =========================
+   WITHDRAW
+========================= */
+
 function withdrawCredit(){
 
-const amount=Number(
-prompt("กรอกจำนวนเครดิตที่ต้องการถอน")
+const amount =
+Number(
+prompt(
+"กรอกจำนวนเครดิตที่ต้องการถอน"
+)
 );
 
 
@@ -647,6 +845,7 @@ if(!amount || amount<=0){
 alert("กรุณากรอกจำนวนให้ถูกต้อง");
 
 return;
+
 }
 
 
@@ -655,18 +854,26 @@ if(amount>credit){
 alert("เครดิตไม่เพียงพอ");
 
 return;
+
 }
 
 
-credit-=amount;
+credit -= amount;
 
 updateCredit();
 
-alert("ถอนเครดิตเรียบร้อย");
+
+alert(
+"ถอนเครดิตเรียบร้อย\nยอดเครดิต ฿"+credit
+);
+
 }
 
 
-/* เข้าเกม */
+/* =========================
+   GAME
+========================= */
+
 function enterGame(){
 
 if(credit<=1){
@@ -676,22 +883,32 @@ document
 .classList.add("show");
 
 return;
+
 }
+
 
 alert("เข้าสู่หน้าเกม");
+
 }
 
 
-/* ปิดเกม popup */
+/* =========================
+   CLOSE GAME
+========================= */
+
 function closeGameModal(){
 
 document
 .getElementById("gameModal")
 .classList.remove("show");
+
 }
 
 
-/* หน้าแรก */
+/* =========================
+   START
+========================= */
+
 showPage("homePage");
 
 </script>
