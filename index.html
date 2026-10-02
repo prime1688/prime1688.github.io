@@ -490,6 +490,121 @@ font-size:48px;
 }
 
 }
+/* ===== PRIME Purple Flow Effect ===== */
+
+body{
+  position:relative;
+  overflow-x:hidden;
+}
+
+/* แสงม่วงวิ่งด้านหลัง */
+body::before{
+  content:"";
+  position:fixed;
+  inset:-40%;
+  z-index:-1;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(180,0,255,.35), transparent 25%),
+    radial-gradient(circle at 80% 70%, rgba(80,0,255,.30), transparent 25%),
+    radial-gradient(circle at 50% 50%, rgba(220,0,255,.18), transparent 30%);
+  filter:blur(45px);
+  animation:purpleFlow 10s ease-in-out infinite alternate;
+}
+
+/* แสงม่วงหมุนและเคลื่อน */
+body::after{
+  content:"";
+  position:fixed;
+  width:420px;
+  height:420px;
+  left:50%;
+  top:45%;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  border:2px solid rgba(190,70,255,.18);
+  box-shadow:
+    0 0 30px rgba(170,0,255,.25),
+    0 0 80px rgba(120,0,255,.18),
+    inset 0 0 50px rgba(220,0,255,.12);
+  z-index:-1;
+  pointer-events:none;
+  animation:purpleOrbit 7s linear infinite;
+}
+
+@keyframes purpleFlow{
+  0%{
+    transform:translate(-8%,-5%) scale(1);
+  }
+  50%{
+    transform:translate(8%,6%) scale(1.15);
+  }
+  100%{
+    transform:translate(-5%,10%) scale(1.05);
+  }
+}
+
+@keyframes purpleOrbit{
+  0%{
+    transform:translate(-50%,-50%) rotate(0deg) scale(.9);
+    opacity:.35;
+  }
+  50%{
+    transform:translate(-50%,-50%) rotate(180deg) scale(1.15);
+    opacity:.75;
+  }
+  100%{
+    transform:translate(-50%,-50%) rotate(360deg) scale(.9);
+    opacity:.35;
+  }
+}
+
+/* ขอบเรืองแสงให้ปุ่ม */
+button,
+.action{
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    filter .25s ease;
+}
+
+button:hover,
+.action:hover{
+  transform:translateY(-3px);
+  filter:brightness(1.15);
+  box-shadow:
+    0 0 12px rgba(190,60,255,.65),
+    0 0 30px rgba(130,0,255,.45);
+}
+
+/* เอฟเฟกต์วิ่งบนปุ่ม */
+.action{
+  position:relative;
+  overflow:hidden;
+}
+
+.action::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-120%;
+  width:70%;
+  height:100%;
+  background:linear-gradient(
+    110deg,
+    transparent,
+    rgba(255,255,255,.25),
+    transparent
+  );
+  transform:skewX(-20deg);
+  animation:buttonShine 3s infinite;
+}
+
+@keyframes buttonShine{
+  0%{left:-120%;}
+  45%{left:140%;}
+  100%{left:140%;}
+}
 </style>
 </head>
 
