@@ -531,6 +531,30 @@ body::before{
     transform:translate(-8%,-5%) rotate(0deg);
   }
 }
+.prime-logo{
+  font-size:64px;
+  font-weight:900;
+  letter-spacing:4px;
+  background:linear-gradient(
+    110deg,
+    #7b00ff,
+    #d000ff,
+    #fff,
+    #d000ff,
+    #7b00ff
+  );
+  background-size:300% 100%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 0 8px #8a00ff)
+         drop-shadow(0 0 20px #b000ff);
+  animation:primeLight 2s linear infinite;
+}
+
+@keyframes primeLight{
+  0%{background-position:300% 0}
+  100%{background-position:-300% 0}
+}
 </style>
 </head>
 
@@ -563,9 +587,11 @@ body::before{
 
 <header class="hero">
 
-<div class="logo">
+
+<div class="logo prime-logo">
 PRIME
 </div>
+
 
 <div class="subtitle">
 MEMBER
