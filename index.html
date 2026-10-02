@@ -536,34 +536,61 @@ body::before{
   font-size:64px;
   font-weight:900;
   font-style:italic;
-  letter-spacing:2px;
-  display:inline-block;
+  letter-spacing:3px;
+  line-height:1;
   color:#fff;
-
   background:linear-gradient(
     180deg,
     #ffffff 0%,
-    #e9caff 15%,
-    #9b28ff 35%,
-    #4b087d 55%,
-    #d86cff 72%,
-    #ffffff 100%
+    #f0c8ff 18%,
+    #b52cff 42%,
+    #6500b8 68%,
+    #21002f 100%
   );
-
   -webkit-background-clip:text;
   background-clip:text;
   -webkit-text-fill-color:transparent;
-  -webkit-text-stroke:2px #d66cff;
+  -webkit-text-stroke:2px #d98aff;
 
   text-shadow:
-    0 2px 0 #5a168f,
-    0 4px 0 #35104f,
-    0 7px 0 #16051f,
-    0 0 8px #d000ff,
-    0 0 20px #9b00ff,
-    0 0 40px #6a00ff;
+    0 3px 0 #4b0870,
+    0 6px 0 #260039,
+    0 10px 0 #12001d,
+    0 0 8px #ff8cff,
+    0 0 20px #c000ff,
+    0 0 40px #7000ff;
 
   transform:skewX(-8deg);
+  overflow:hidden;
+}
+
+.prime-logo::after{
+  content:"";
+  position:absolute;
+  top:-20%;
+  left:-80%;
+  width:35%;
+  height:140%;
+  background:linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255,255,255,0) 30%,
+    rgba(255,255,255,.95) 50%,
+    rgba(255,0,255,.8) 58%,
+    transparent 75%
+  );
+  transform:skewX(-18deg);
+  animation:primeSweep 2s linear infinite;
+  pointer-events:none;
+}
+
+@keyframes primeSweep{
+  0%{
+    left:-80%;
+  }
+  100%{
+    left:150%;
+  }
 }
 /* เอฟเฟกต์เรืองแสง */
 @keyframes primePulse{
