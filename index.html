@@ -531,24 +531,68 @@ body::before{
     transform:translate(-8%,-5%) rotate(0deg);
   }
 }
+/* ===== PRIME GAMING LOGO ===== */
 .prime-logo{
+  font-family:"Arial Black", Impact, sans-serif;
   font-size:64px;
   font-weight:900;
-  letter-spacing:4px;
+  font-style:italic;
+  letter-spacing:5px;
+  line-height:1;
+
   background:linear-gradient(
-    110deg,
-    #7b00ff,
-    #d000ff,
-    #fff,
-    #d000ff,
-    #7b00ff
+    105deg,
+    #7200ff 0%,
+    #b000ff 20%,
+    #ffffff 38%,
+    #e000ff 48%,
+    #7200ff 70%,
+    #ffffff 82%,
+    #7200ff 100%
   );
-  background-size:300% 100%;
+
+  background-size:400% 100%;
   -webkit-background-clip:text;
+  background-clip:text;
   -webkit-text-fill-color:transparent;
-  filter:drop-shadow(0 0 8px #8a00ff)
-         drop-shadow(0 0 20px #b000ff);
-  animation:primeLight 2s linear infinite;
+
+  filter:
+    drop-shadow(0 0 4px #8a00ff)
+    drop-shadow(0 0 12px #a000ff)
+    drop-shadow(0 0 28px #7b00ff);
+
+  animation:
+    primeLight 2s linear infinite,
+    primePulse 1.8s ease-in-out infinite;
+}
+
+/* แสงวิ่งบนตัว PRIME */
+@keyframes primeLight{
+  0%{
+    background-position:400% 0;
+  }
+  100%{
+    background-position:-400% 0;
+  }
+}
+
+/* เอฟเฟกต์เรืองแสง */
+@keyframes primePulse{
+  0%,100%{
+    filter:
+      drop-shadow(0 0 4px #8a00ff)
+      drop-shadow(0 0 12px #a000ff)
+      drop-shadow(0 0 28px #7b00ff);
+    transform:scale(1);
+  }
+
+  50%{
+    filter:
+      drop-shadow(0 0 8px #c000ff)
+      drop-shadow(0 0 20px #d000ff)
+      drop-shadow(0 0 40px #8a00ff);
+    transform:scale(1.035);
+  }
 }
 
 @keyframes primeLight{
