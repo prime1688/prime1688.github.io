@@ -640,7 +640,7 @@ id="creditAmount"
 
 <button
 class="action deposit"
-onclick="openWallet('deposit')"
+onclick="openDepositQR()"
 >
 
 <span class="icon">
@@ -1654,5 +1654,109 @@ renderHistory();
 
 </script>
 
+</body>
+<!-- QR เติมเงิน -->
+<div id="depositQR" class="modal">
+  <div class="modal-box">
+    <button class="close-btn" onclick="closeDepositQR()">×</button>
+
+    <h2>💰 เติมเงิน</h2>
+    <p>สแกน QR Code เพื่อชำระเงิน</p>
+
+    <img src="qr-payment.png" class="qr-payment">
+
+    <p class="qr-note">
+      หลังจากชำระเงินแล้ว กรุณากดปุ่มยืนยัน
+    </p>
+
+    <button class="confirm-btn" onclick="closeDepositQR()">
+      ✓ ฉันโอนเงินแล้ว
+    </button>
+  </div>
+</div>
+
+<style>
+#depositQR{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  background:rgba(0,0,0,.75);
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+#depositQR.show{
+  display:flex;
+}
+
+.modal-box{
+  width:min(420px,100%);
+  background:linear-gradient(145deg,#10002b,#21005c);
+  border:2px solid #9d3cff;
+  border-radius:25px;
+  padding:25px;
+  text-align:center;
+  box-shadow:0 0 40px #8b2cff;
+  position:relative;
+}
+
+.modal-box h2{
+  color:white;
+  font-size:30px;
+  margin:5px 0 8px;
+}
+
+.modal-box p{
+  color:white;
+}
+
+.close-btn{
+  position:absolute;
+  right:15px;
+  top:10px;
+  border:0;
+  background:none;
+  color:white;
+  font-size:38px;
+}
+
+.qr-payment{
+  width:280px;
+  max-width:90%;
+  background:white;
+  padding:10px;
+  border-radius:15px;
+  margin:15px auto;
+  display:block;
+}
+
+.qr-note{
+  font-size:14px;
+  opacity:.9;
+}
+
+.confirm-btn{
+  width:100%;
+  padding:15px;
+  border:0;
+  border-radius:15px;
+  color:white;
+  font-size:18px;
+  font-weight:bold;
+  background:linear-gradient(90deg,#18aaff,#c52cff);
+}
+</style>
+
+<script>
+function openDepositQR(){
+  document.getElementById("depositQR").classList.add("show");
+}
+
+function closeDepositQR(){
+  document.getElementById("depositQR").classList.remove("show");
+}
+</script>
 </body>
 </html>
