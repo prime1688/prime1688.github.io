@@ -520,68 +520,6 @@ body::before{
   z-index:1;
 }
 
-@keyframes purpleFlow{
-  0%{
-    transform:translate(-8%,-5%) rotate(0deg);
-  }
-  50%{
-    transform:translate(8%,6%) rotate(8deg);
-  }
-  100%{
-    transform:translate(-8%,-5%) rotate(0deg);
-  }
-}
-.prime-logo{
-  position:relative;
-  display:inline-block;
-  width:min(96vw,1100px);
-  line-height:0;
-  overflow:hidden;
-  margin:0 auto;
-  filter:
-    drop-shadow(0 0 8px #b000ff)
-    drop-shadow(0 0 22px #7b00ff)
-    drop-shadow(0 0 45px #4b00ff);
-}
-
-.prime-logo img{
-  display:block;
-  width:100%;
-  height:auto;
-}
-
-.prime-logo::after{
-  content:"";
-  position:absolute;
-  top:-30%;
-  left:-70%;
-  width:30%;
-  height:160%;
-  background:linear-gradient(
-    105deg,
-    transparent 20%,
-    rgba(255,255,255,.15) 40%,
-    rgba(255,255,255,1) 50%,
-    rgba(220,70,255,.95) 55%,
-    rgba(255,255,255,.15) 65%,
-    transparent 80%
-  );
-  transform:skewX(-18deg);
-  mix-blend-mode:screen;
-  pointer-events:none;
-  animation:primeLightSweep 2.4s linear infinite;
-}
-
-@keyframes primeLightSweep{
-  0%{
-    left:-70%;
-  }
-  100%{
-    left:145%;
-  }
-
-
-
 /* เอฟเฟกต์เรืองแสง */
 @keyframes primePulse{
   0%,100%{
